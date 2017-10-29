@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% load account_extras %}
+
+{% block title %}Profile | {{ block.super }}{% endblock %}
+
+{% block body %}
+{% if profile.avatar %}
+<img src="{{ profile.avatar.url }}" alt="profile picture">
+{% endif %}
+    {% for field in fields %}
+    <p>{{ profile|verbose_name:field|title }}: 
+        {% if profile|get_attr:field %}
+            {{ profile|get_attr:field|safe }}
+        {% else %}
+            &lt;none&gt;
+        {% endif %}</p>
+    {% endfor %}
+<a href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
+{% endblock %}

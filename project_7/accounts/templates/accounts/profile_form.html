@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}Edit Profile | {{ block.super }}{% endblock %}
+
+{% block body %}
+
+<h1>Edit Profile</h1>
+<form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="button" value="Save">
+</form>
+
+{% endblock %}
